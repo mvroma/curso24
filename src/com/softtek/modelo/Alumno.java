@@ -1,48 +1,36 @@
 package com.softtek.modelo;
 
 public class Alumno {
-    public String NombreCompleto;
-    private int[] Parciales;
+    private String nombreCompleto;
+    private int[] parciales;
 
-    public Alumno(String NombreCompleto, int numParciales) {
-        this.NombreCompleto = NombreCompleto;
-        this.Parciales = new int[numParciales];
+    public Alumno(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
+        this.parciales = new int[3];
     }
 
-    private double calcularPromedio() {
+    public void setParciales(int[] parciales){
+        if(parciales.length == this.parciales.length){
+            this.parciales = parciales;
+        }else {
+            System.out.println("Inválido numero de parciales");
+        }
+    }
+    public double calculaMedia(){
         int sum = 0;
-        for (int i = 0; i < this.Parciales.length; i++) {
-            sum += this.Parciales[i];
+        for (int parcial : parciales){
+            sum+= parcial;
         }
-        return (double) sum / this.Parciales.length;
+        return (double) sum / parciales.length;
+    }
+    public void mostrarNotas() {
+        System.out.println(nombreCompleto + ". Su nota es: ");
+        for (int parcial : parciales) {
+            System.out.println(parcial + " ");
+        }
+        System.out.println();
     }
 
-    public void mostrarCalificaciones() {
-        System.out.println("Calificaciones de " + NombreCompleto + ":");
-        for (int i = 0; i < Parciales.length; i++) {
-            System.out.println("Parcial " + (i + 1) + ": " + Parciales[i]);
-        }
-    }
-    public String getNombreCompleto() {
-        return NombreCompleto;
-    }
-
-    public void setNombreCompleto(String nombreCompleto) {
-        NombreCompleto = nombreCompleto;
-    }
-
-    public int[] getParciales() {
-        return Parciales;
-    }
-    public void setParciales(int[] parciales) {
-        if (parciales.length == this.Parciales.length) {
-            for (int i = 0; i < parciales.length; i++) {
-                this.Parciales[i] = parciales[i];
-            }
-        } else {
-            System.out.println("Inválido número de parciales");
-        }
-    }
 }
 
 
